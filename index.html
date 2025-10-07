@@ -4,200 +4,304 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Reportes - Instituto de la Empresa</title>
-    
-    <!-- Importación de la fuente y la librería de íconos -->
+
+    <!-- Importación de Fuentes y Librería de Íconos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&family=Public+Sans:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fcfcfc;
-            color: #0a2340; /* Azul oscuro corporativo */
-            margin: 0;
-            padding: 60px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Alineado arriba para logos grandes */
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        :root {
+            --color-primary: #fa630c;
+            --color-secondary: #082755;
+            --color-text: #5c6c7d;
+            --color-background: #f8f9fa;
+            --font-body: 'Raleway', sans-serif;
+            --font-heading: 'Public Sans', sans-serif;
         }
 
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            margin: 0;
+            padding: 0;
+        }
+        
         .container {
-            width: 100%;
-            max-width: 1100px; /* Un poco más de espacio */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Top Bar (Pre-Header) --- */
+        .top-bar {
+            background-color: var(--color-secondary);
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .top-bar span {
+            opacity: 0.8;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 60vh;
+            min-height: 450px;
+            background-image: linear-gradient(90deg, rgba(8, 39, 85, 0.9) 0%, rgba(8, 39, 85, 0.4) 50%, rgba(8, 39, 85, 0) 100%), url('https://cdn.bitrix24.es/b15495391/landing/5af/5afbc967f94a01883400ade6af8188bb/portada2_1x.webp');
+            background-size: cover;
+            background-position: center 30%;
+            color: #fff;
+        }
+
+        .hero-content {
+            padding-left: 8%;
+        }
+
+        .hero-content .logo {
+            max-width: 200px; /* Logo oficial proporcionado */
+            margin-bottom: 25px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 5rem;
+            line-height: 1.1;
+            margin: 0;
+            text-align: left;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--color-primary);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            padding: 80px 0;
+        }
+        
+        .category {
+            margin-bottom: 70px;
             text-align: center;
         }
 
-        .header {
-            margin-bottom: 70px;
-        }
-
-        .header img {
-            max-width: 260px; /* --- LOGO MÁS GRANDE --- */
-            margin-bottom: 20px;
-        }
-
-        .header p {
-            font-size: 1.2em;
-            color: #55677b;
-            font-weight: 400;
-        }
-
-        .category {
-            margin-bottom: 70px;
-        }
-
         .category h2 {
-            font-size: 2em;
-            font-weight: 600;
-            color: #0a2340;
-            margin-bottom: 45px;
+            font-family: var(--font-heading);
+            font-size: 2.2em;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: 40px;
             display: inline-block;
             position: relative;
-            padding-bottom: 12px;
         }
 
         .category h2::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 70%;
-            height: 3px;
-            background-color: #f56600; /* Naranja corporativo */
-            border-radius: 2px;
+            width: 60px;
+            height: 4px;
+            background-color: var(--color-primary);
         }
 
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
         .link-card {
-            background: #ffffff;
-            border: 1px solid #e8edf3;
+            background-color: #ffffff;
             border-radius: 12px;
-            padding: 35px 30px;
             text-decoration: none;
-            color: #0a2340;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(8, 39, 85, 0.06);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            height: 100%; /* Para que todas las tarjetas tengan la misma altura */
+            padding: 30px;
         }
-
+        
         .link-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
-            border-color: #f56600;
+            box-shadow: 0 18px 45px rgba(8, 39, 85, 0.12);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .icon-wrapper {
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(250, 99, 12, 0.3);
         }
 
         .link-card i {
-            font-size: 2.6em;
-            margin-bottom: 20px;
-            color: #f56600;
+            font-size: 1.8em;
+            color: #ffffff;
         }
         
-        .link-card h3 {
-            margin: 0 0 10px 0; /* Espacio debajo del título */
-            font-size: 1.2em;
-            font-weight: 600;
-        }
-        
-        /* Estilo para la nueva descripción */
-        .link-card p {
-            margin: 0;
-            font-size: 0.9em;
-            color: #55677b;
-            line-height: 1.5;
-            flex-grow: 1; /* Ayuda a alinear el contenido */
+        .card-text-content {
+            text-align: left;
         }
 
-        .footer {
-            margin-top: 70px;
-            padding-top: 30px;
-            border-top: 1px solid #e8edf3;
+        .link-card h3 {
+            font-family: var(--font-heading);
+            margin: 0;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+        
+        .link-card p {
+            margin: 5px 0 0 0;
+            font-size: 1em;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        /* --- FOOTER --- */
+        .site-footer {
+            background-color: #1a1a19;
             color: #8894a3;
-            font-size: 0.9em;
+            padding: 20px 0;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <img src="https://cdn.bitrix24.es/b15495391/landing/7a8/7a88860fb02485c824de9be805faee6d/ie_1x.png" alt="Logo Instituto de la Empresa">
-            <p>Portal de Acceso a Reportes de Zoho Desk</p>
-        </div>
-
-        <!-- CATEGORÍA: PANELES BASADOS EN EL TIEMPO -->
-        <div class="category">
-            <h2>Paneles de Información Basada en el Tiempo</h2>
-            <div class="links-grid">
-                <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000127068" target="_blank" class="link-card">
-                    <i class="fas fa-hourglass-half"></i>
-                    <h3>Tiempo de Resolución</h3>
-                    <p>Mide el tiempo total que toma el equipo para resolver un ticket desde su creación.</p>
-                </a>
-                <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000127065" target="_blank" class="link-card">
-                    <i class="far fa-clock"></i>
-                    <h3>Tiempo de Respuesta</h3>
-                    <p>Calcula el tiempo promedio que se tarda en responder a las consultas de los clientes.</p>
-                </a>
-                <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000127062" target="_blank" class="link-card">
-                    <i class="fas fa-stopwatch-20"></i>
-                    <h3>Primer Tiempo de Respuesta</h3>
-                    <p>Indica la rapidez con la que un cliente recibe la primera contestación tras abrir un ticket.</p>
-                </a>
-            </div>
-        </div>
-
-        <!-- CATEGORÍA: PANELES POPULARES -->
-        <div class="category">
-            <h2>Paneles de Información Populares</h2>
-            <div class="links-grid">
-                <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000127041" target="_blank" class="link-card">
-                    <i class="fas fa-ticket"></i>
-                    <h3>Estado de Tickets</h3>
-                    <p>Visualiza la distribución de tickets por su estado actual: abiertos, cerrados, en espera, etc.</p>
-                </a>
-                <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000137003" target="_blank" class="link-card">
-                    <i class="fas fa-chart-pie"></i>
-                    <h3>Visión General</h3>
-                    <p>Ofrece un resumen completo de las métricas clave y el rendimiento general del soporte.</p>
-                </a>
-                <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000137006" target="_blank" class="link-card">
-                    <i class="far fa-star"></i>
-                    <h3>Satisfacción del Cliente</h3>
-                    <p>Muestra las calificaciones y comentarios de los clientes para medir la calidad del servicio.</p>
-                </a>
-            </div>
-        </div>
-
-        <!-- CATEGORÍA: PANELES PÚBLICOS -->
-        <div class="category">
-            <h2>Paneles de Información Pública</h2>
-            <div class="links-grid">
-                <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000198023" target="_blank" class="link-card">
-                    <i class="fas fa-sitemap"></i>
-                    <h3>Paneles de Tickets</h3>
-                    <p>Accede a reportes generales y vistas de tickets configurados para consulta amplia.</p>
-                </a>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>&copy; Instituto de la Empresa - Accesos para personal autorizado.</p>
+    <div class="top-bar">
+        <div class="container">
+            Portal de Acceso a Reportes &nbsp;&nbsp;|&nbsp;&nbsp; <span>Plataforma: Zoho Desk</span>
         </div>
     </div>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <img src="https://cdn.bitrix24.es/b15495391/landing/7a8/7a88860fb02485c824de9be805faee6d/ie_1x.png" alt="Logo Instituto de la Empresa" class="logo">
+            <h1>
+                Trabaja.<br>
+                <span class="highlight">Estudia.</span><br>
+                Vive.
+            </h1>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+
+            <!-- CATEGORÍA: PANELES BASADOS EN EL TIEMPO -->
+            <section class="category">
+                <h2>Paneles de Información Basada en el Tiempo</h2>
+                <div class="links-grid">
+                    <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000127068" target="_blank" class="link-card">
+                        <div class="card-header">
+                            <div class="icon-wrapper"><i class="fas fa-hourglass-half"></i></div>
+                            <div class="card-text-content">
+                                <h3>Tiempo de Resolución</h3>
+                                <p>Mide el tiempo total que toma el equipo para resolver un ticket desde su creación.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000127065" target="_blank" class="link-card">
+                        <div class="card-header">
+                            <div class="icon-wrapper"><i class="far fa-clock"></i></div>
+                            <div class="card-text-content">
+                                <h3>Tiempo de Respuesta</h3>
+                                <p>Calcula el tiempo promedio que se tarda en responder a las consultas de los clientes.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000127062" target="_blank" class="link-card">
+                        <div class="card-header">
+                            <div class="icon-wrapper"><i class="fas fa-stopwatch-20"></i></div>
+                            <div class="card-text-content">
+                                <h3>Primer Tiempo de Respuesta</h3>
+                                <p>Indica la rapidez con la que un cliente recibe la primera contestación tras abrir un ticket.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- CATEGORÍA: PANELES POPULARES -->
+            <section class="category">
+                <h2>Paneles de Información Populares</h2>
+                <div class="links-grid">
+                    <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000127041" target="_blank" class="link-card">
+                        <div class="card-header">
+                           <div class="icon-wrapper"><i class="fas fa-ticket"></i></div>
+                           <div class="card-text-content">
+                               <h3>Estado de Tickets</h3>
+                               <p>Visualiza la distribución de tickets por su estado actual: abiertos, cerrados, en espera, etc.</p>
+                           </div>
+                        </div>
+                    </a>
+                    <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000137003" target="_blank" class="link-card">
+                        <div class="card-header">
+                            <div class="icon-wrapper"><i class="fas fa-chart-pie"></i></div>
+                            <div class="card-text-content">
+                                <h3>Visión General</h3>
+                                <p>Ofrece un resumen de las métricas clave y el rendimiento general del área de soporte.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000137006" target="_blank" class="link-card">
+                        <div class="card-header">
+                            <div class="icon-wrapper"><i class="far fa-star"></i></div>
+                            <div class="card-text-content">
+                                <h3>Satisfacción del Cliente</h3>
+                                <p>Muestra las calificaciones y comentarios para medir la calidad del servicio ofrecido.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- CATEGORÍA: PANELES PÚBLICOS -->
+            <section class="category">
+                <h2>Paneles de Información Pública</h2>
+                <div class="links-grid">
+                    <a href="https://desk.zoho.com/agent/institutodelaempresa/instituto-de-la-empresa/dashboards/details/1187641000000198023" target="_blank" class="link-card">
+                        <div class="card-header">
+                           <div class="icon-wrapper"><i class="fas fa-sitemap"></i></div>
+                           <div class="card-text-content">
+                               <h3>Paneles de Tickets</h3>
+                               <p>Accede a reportes generales y vistas de tickets configurados para consulta amplia.</p>
+                           </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; Instituto de la Empresa - Accesos para personal autorizado.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
